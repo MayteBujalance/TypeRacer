@@ -20,12 +20,14 @@ header {
 }
 
 header h1 {
+    font-family: roboto, sans-serif;
     font-size: 1.8rem;
     margin: 0;
     text-align: center; /* Ensure text is centered */
 }
 
 header button {
+    font-family: roboto, sans-serif;
     background-color: white;
     color: #4CAF50;
     border: none;
