@@ -1,3 +1,101 @@
+/* General reset */
+body {
+    margin: 0;
+    font-family: "Inter Tight", "Roboto", "Montserrat", Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Header styling */
 header {
-    background-color: ff8400;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    padding: 1rem 2rem;
+    background-color: #ff8400;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 0.5rem; /* Add spacing between h1 and button */
+}
+
+header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    text-align: center; /* Ensure text is centered */
+}
+
+header button {
+    background-color: white;
+    color: #4CAF50;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+header button:hover {
+    background-color: #f1f1f1;
+}
+
+/* Main content styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ff8400;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+header button {
+    background-color: white;
+    color: #4CAF50;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+header button:hover {
+    background-color: #f1f1f1;
+}
+
+/* Responsive grid layout for test and result area*/
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to one column */
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.test-area {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.results-area {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjust grid for medium and larger screens */
+@media (min-width: 768px) {
+    .main-container {
+        grid-template-columns: 2fr 1fr; /* Two-thirds and one-third */
+    }
 }

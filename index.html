@@ -25,21 +25,67 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- Custom JS -->
+    <script src="assets/js/script.js"></script>
     
         <title>Type Racer</title>
 </head>
 
 <body>
-    <!-- Header Section -->
-    <header class="text-center bg-light" style="position: relative; height: 100vh; background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;">
-        <div class="d-flex flex-column justify-content-center align-items-center h-100"></div>
-            <h1 class="text-white fw-bold" style="font-size: 3rem;">Welcome to Type Racer</h1>
-            <p class="text-white fs-5">Test your typing speed and improve your skills!</p>
-            <button class="btn btn-primary btn-lg mt-3">Start Typing Test</button>
-        </div>
+    <!-- header with instruction button -->
+    <header>
+        <h1>TypeRacer</h1>
+        <button id="instructions-btn">Instructions</button>
     </header>
+
+    <!-- main container with a grid for test and result area -->
+    <div class="main-container">
+        <div class="test-area">
+            <h2>Typing Test</h2>
+            <p>Type the text here...</p>
+
+            <!-- Dropdown menu for selecting difficulty -->
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="difficulty-select">Select Difficulty</label>
+                <select class="form-select" id="difficulty-select">
+                    <option value="easy" selected>Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+
+            <!-- Sample text for typing -->
+            <div class="sample-text mb-3">
+                <p id="text-to-type">
+                    "The quick brown fox jumps over the lazy dog."
+                </p>
+            </div>
+
+            <!-- Text box for user input -->
+            <div class="mb-3">
+                <textarea id="typing-box" class="form-control" rows="3" placeholder="Start typing here..."></textarea>
+            </div>
+
+            <!-- Buttons for controlling the test -->
+            <div class="button-group">
+                <button id="start-btn" class="btn btn-success me-2">Start</button>
+                <button id="stop-btn" class="btn btn-danger me-2">Stop</button>
+                <button id="retry-btn" class="btn btn-secondary">Retry</button>
+            </div>
+        </div>
+        
+        <div class="results-area">
+            <h2>Results</h2>
+            <p><strong>Level:</strong> <span id="result-level">-</span></p>
+            <p><strong>Time:</strong> <span id="result-time">-</span> seconds</p>
+            <p><strong>WPM:</strong> <span id="result-wpm">-</span></p>
+        </div>
+    </div>
 
     <!-- Bootstrap JS Link -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <!-- FontAwsome Link -->
+    <script src="https://kit.fontawesome.com/YOUR-KIT-CODE-HERE.js" crossorigin="anonymous"></script>
 </body>
 </html>
