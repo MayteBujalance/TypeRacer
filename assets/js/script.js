@@ -66,14 +66,42 @@ function stopTypingTest() {
 // Disable the typing box
 }
 
-// ********** Function to calculate the number of correctly typed words
+// Function to highlight words in real-time
+function highlightWords() {
+    const typingBox = document.getElementById("typing-box");
+    const userInput = typingBox.value.trim();
+    const sampleText = document.getElementById("text-to-type").textContent.trim();
+    const sampleWords = sampleText.split(/\s+/); // Split sample text into words
+    const userWords = userInput.split(/\s+/); // Split user input into words
+
+    let highlightedText = "";
+
+    // Compare each word and apply highlighting
+    for (let i = 0; i < sampleWords.length; i++) {
+        if (userWords[i] === undefined) {
+            // If the user hasn't typed this word yet, keep it unstyled
+            highlightedText += `<span>${sampleWords[i]}</span> `;
+        } else if (userWords[i] === sampleWords[i]) {
+            // Correct word: highlight in blue
+            highlightedText += `<span style="color: blue;">${sampleWords[i]}</span> `;
+        } else {
+            // Incorrect word: highlight in red
+            highlightedText += `<span style="color: red;">${sampleWords[i]}</span> `;
+        }
+    }
+
+    // Update the sample text display with highlighted text
+    document.getElementById("text-to-type").innerHTML = highlightedText.trim();
+}
+
+// Function to calculate the number of correctly typed words
 function calculateCorrectWords(sampleText, userInput) {
     const sampleWords = sampleText.trim().split(/\s+/); // Trims removes start and end spcaces. Splits text into an array of words. s+ matches whitespace character, space, tabs etc
     const userWords = userInput.trim().split(/\s+/); // same as above for the user's input
     let correctWords = 0; // Initialize a counter for correct words.
 
 
-    // *****Compare each word in the user's input with the sample text
+    // Compare each word in the user's input with the sample text
     for (let i = 0; i < userWords.length; i++) {
         if (userWords[i] === sampleWords[i]) {
             correctWords++;
@@ -115,5 +143,9 @@ document.getElementById("start-btn").addEventListener("click", startTypingTest);
 document.getElementById("stop-btn").addEventListener("click", stopTypingTest);
 document.getElementById("retry-btn").addEventListener("click", retryTypingTest);
 
+// Add event listener for real-time input in the typing box
+document.getElementById("typing-box").addEventListener("input", highlightWords);
+
 // Add event listener to the difficulty select dropdown
 document.getElementById("difficulty-select").addEventListener("change", displayRandomTextByDifficulty);
+
