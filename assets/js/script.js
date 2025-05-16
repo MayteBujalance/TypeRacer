@@ -19,6 +19,7 @@ const sampleTexts = {
 
 let startTime; // Variable to store the start time
 
+
 // Function to display a random sample text based on the selected difficulty. When this function is called:
 
 // It checks which difficulty level the user selected.
@@ -40,12 +41,17 @@ function startTypingTest() {
     startTime = Date.now(); // Record the start time
     document.getElementById("start-btn").disabled = true; // Disable the Start button
     document.getElementById("stop-btn").disabled = false; // Enable the Stop button
+    
     const typingBox = document.getElementById("typing-box");
     typingBox.value = ""; // Clear the typing box
     typingBox.disabled = false; // Enable the typing box
     typingBox.focus(); // Automatically focus on the typing box
+    
     displayRandomTextByDifficulty(); // Display a random text
-    document.getElementById("typing-box").focus();
+    
+      const difficultySelect = document.getElementById("difficulty-select");
+    const selectedDifficulty = difficultySelect.value;
+    document.getElementById("result-level").textContent = selectedDifficulty;
 }
 
 // Function to stop the typing test and calculate the elapsed time
@@ -53,6 +59,7 @@ function stopTypingTest() {
     const endTime = Date.now(); // Record the end time
     const elapsedTime = ((endTime - startTime) / 1000).toFixed(2); // Calculate time in seconds and round to 2 decimal points
     document.getElementById("result-time").textContent = elapsedTime; // Display the elapsed time
+    calculateWPM(); // Calculate and display WPM
     document.getElementById("start-btn").disabled = false; // Enable the Start button
     document.getElementById("stop-btn").disabled = true; // Disable the Stop button
     document.getElementById("typing-box").disabled = true;
@@ -66,7 +73,7 @@ function calculateCorrectWords(sampleText, userInput) {
     let correctWords = 0; // Initialize a counter for correct words.
 
 
-    // Compare each word in the user's input with the sample text
+    // *****Compare each word in the user's input with the sample text
     for (let i = 0; i < userWords.length; i++) {
         if (userWords[i] === sampleWords[i]) {
             correctWords++;
@@ -76,11 +83,14 @@ function calculateCorrectWords(sampleText, userInput) {
     return correctWords;
 }
 
- // Display the selected difficulty level
-    const difficultySelect = document.getElementById("difficulty-select");
-    const selectedDifficulty = difficultySelect.value;
-    document.getElementById("result-level").textContent = `${selectedDifficulty}`; // Display the difficulty level
-
+function calculateWPM() {
+    const typingBox = document.getElementById("typing-box");
+    const userInput = typingBox.value.trim();
+    const wordCount = userInput.split(/\s+/).length; // Count words in user input
+    const elapsedTime = (Date.now() - startTime) / 1000 / 60; // Time in minutes
+    const wpm = Math.round(wordCount / elapsedTime); // Calculate WPM
+    document.getElementById("result-wpm").textContent = wpm; // Display WPM
+}
 
 // Function to retry the typing test
 function retryTypingTest() {
