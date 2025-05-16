@@ -45,6 +45,7 @@ function startTypingTest() {
     typingBox.disabled = false; // Enable the typing box
     typingBox.focus(); // Automatically focus on the typing box
     displayRandomTextByDifficulty(); // Display a random text
+    document.getElementById("typing-box").focus();
 }
 
 // Function to stop the typing test and calculate the elapsed time
@@ -54,7 +55,8 @@ function stopTypingTest() {
     document.getElementById("result-time").textContent = elapsedTime; // Display the elapsed time
     document.getElementById("start-btn").disabled = false; // Enable the Start button
     document.getElementById("stop-btn").disabled = true; // Disable the Stop button
-    userInput.disabled = true; // Disable the typing box
+    document.getElementById("typing-box").disabled = true;
+// Disable the typing box
 }
 
 // Function to calculate the number of correctly typed words
@@ -79,33 +81,30 @@ function calculateWPM(correctWords, elapsedTime) {
     return Math.round(correctWords / minutes); // Calculate WPM and round to a whole number
 }
 
-// Function to stop the typing test and calculate results
-function stopTypingTest() {
-    const endTime = Date.now(); // Record the end time
-    const elapsedTime = ((endTime - startTime) / 1000).toFixed(2); // Calculate time in seconds and round to 2 decimal points
 
-    const sampleText = document.getElementById("text-to-type").textContent; // Get the sample text
-    const userInput = document.getElementById("typing-box").value; // Get the text the user typed, retrieves from an input field with id "typing-box"
-    const correctWords = calculateCorrectWords(sampleText, userInput); // Calculate correct words
-    const wpm = calculateWPM(correctWords, elapsedTime); // Calculate WPM
 
-    // Display results
-    document.getElementById("result-time").textContent = elapsedTime; // Display elapsed time
-    document.getElementById("result-wpm").textContent = wpm; // Display WPM
-    const difficultyLevel = document.getElementById("difficulty-select").value; // Get selected difficulty level
-    document.getElementById("result-level").textContent = difficultyLevel; // Display difficulty level
+// Function to retry the typing test
+function retryTypingTest() {
+    const typingBox = document.getElementById("typing-box");
+    typingBox.value = ""; // Clear the typing box
+    typingBox.disabled = false; // Enable the typing box
+    typingBox.focus(); // Automatically focus on the typing box
 
-    // Disable the Stop button and enable the Start button
-    document.getElementById("start-btn").disabled = false;
-    document.getElementById("stop-btn").disabled = true;
+    // Reset results (optional)
+    document.getElementById("result-time").textContent = "-";
+    document.getElementById("result-wpm").textContent = "-";
+    document.getElementById("result-level").textContent = "-";
 
-    // Disable the typing box
-    document.getElementById("typing-box").disabled = true;
+    // Disable the Start button and enable the Stop button
+    document.getElementById("start-btn").disabled = true;
+    document.getElementById("stop-btn").disabled = false;
 }
 
-// Add event listeners to the Start and Stop buttons
+
+// Add event listeners to the Start and Stop buttons and the Retry button
 document.getElementById("start-btn").addEventListener("click", startTypingTest);
 document.getElementById("stop-btn").addEventListener("click", stopTypingTest);
+document.getElementById("retry-btn").addEventListener("click", retryTypingTest);
 
 // Add event listener to the difficulty select dropdown
 document.getElementById("difficulty-select").addEventListener("change", displayRandomTextByDifficulty);
