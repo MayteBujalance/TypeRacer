@@ -59,11 +59,12 @@ function stopTypingTest() {
 // Disable the typing box
 }
 
-// Function to calculate the number of correctly typed words
+// ********** Function to calculate the number of correctly typed words
 function calculateCorrectWords(sampleText, userInput) {
     const sampleWords = sampleText.trim().split(/\s+/); // Trims removes start and end spcaces. Splits text into an array of words. s+ matches whitespace character, space, tabs etc
     const userWords = userInput.trim().split(/\s+/); // same as above for the user's input
     let correctWords = 0; // Initialize a counter for correct words.
+
 
     // Compare each word in the user's input with the sample text
     for (let i = 0; i < userWords.length; i++) {
@@ -75,12 +76,10 @@ function calculateCorrectWords(sampleText, userInput) {
     return correctWords;
 }
 
-// Function to calculate Words Per Minute (WPM)
-function calculateWPM(correctWords, elapsedTime) {
-    const minutes = elapsedTime / 60; // Convert time to minutes
-    return Math.round(correctWords / minutes); // Calculate WPM and round to a whole number
-}
-
+ // Display the selected difficulty level
+    const difficultySelect = document.getElementById("difficulty-select");
+    const selectedDifficulty = difficultySelect.value;
+    document.getElementById("result-level").textContent = `${selectedDifficulty}`; // Display the difficulty level
 
 
 // Function to retry the typing test
