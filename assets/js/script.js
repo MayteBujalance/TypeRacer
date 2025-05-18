@@ -160,6 +160,7 @@ function retryTypingTest() {
     document.getElementById("result-wpm").textContent = "-";
     const difficultySelect = document.getElementById("difficulty-select");
     const selectedDifficulty = difficultySelect.value;
+    // Set the result level to the current difficulty
     document.getElementById("result-level").textContent = selectedDifficulty;
 
     // Disable the Start button and enable the Stop button
