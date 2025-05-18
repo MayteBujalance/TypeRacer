@@ -82,6 +82,37 @@
         </div>
     </div>
 
+<!-- Instructions Modal -->
+<div class="modal fade" id="instructionsModal" tabindex="-1" aria-labelledby="instructionsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="instructionsModalLabel">How to Play TypeRacer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ol>
+          <li>Select your desired difficulty level from the dropdown.</li>
+          <li>Click <strong>Start</strong> to begin, or just start typing to start the timer automatically.</li>
+          <li>Type the displayed text as quickly and accurately as you can.</li>
+          <li>Correct words will be highlighted in <span style="color:blue;">blue</span>, incorrect in <span style="color:red;">red</span>.</li>
+          <li>Press <strong>Enter</strong> or click <strong>Stop</strong> to finish the test.</li>
+          <li>Click <strong>Retry</strong> for a new random text at the same level.</li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>// ...existing code...
+
+// Show the instructions modal when the Instructions button is clicked
+document.getElementById("instructions-btn").addEventListener("click", function () {
+    var instructionsModal = new bootstrap.Modal(document.getElementById('instructionsModal'));
+    instructionsModal.show();
+});
+
     <!-- Bootstrap JS Link -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
     

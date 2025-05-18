@@ -173,3 +173,8 @@ document.getElementById("typing-box").addEventListener("input", highlightWords);
 // Add event listener to the difficulty select dropdown
 document.getElementById("difficulty-select").addEventListener("change", displayRandomTextByDifficulty);
 
+// Show the instructions modal when the Instructions button is clicked
+document.getElementById("instructions-btn").addEventListener("click", function () {
+    var instructionsModal = new bootstrap.Modal(document.getElementById('instructionsModal'));
+    instructionsModal.show();
+});
