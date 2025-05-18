@@ -41,6 +41,7 @@ function startTypingTest() {
     startTime = null; // Reset the timer
     document.getElementById("start-btn").disabled = true; // Disable the Start button
     document.getElementById("stop-btn").disabled = false; // Enable the Stop button
+    document.getElementById("retry-btn").disabled = true;
     
     const typingBox = document.getElementById("typing-box");
     typingBox.value = ""; // Clear the typing box
@@ -73,7 +74,8 @@ function stopTypingTest() {
     calculateWPM(); // Calculate and display WPM
     document.getElementById("start-btn").disabled = false; // Enable the Start button
     document.getElementById("stop-btn").disabled = true; // Disable the Stop button
-    document.getElementById("typing-box").disabled = true;
+    document.getElementById("typing-box").disabled = false;
+    document.getElementById("retry-btn").disabled = false; // Enable the Retry button
 // Disable the typing box
 }
 
@@ -145,6 +147,9 @@ function retryTypingTest() {
     typingBox.value = ""; // Clear the typing box
     typingBox.disabled = false; // Enable the typing box
     typingBox.focus(); // Automatically focus on the typing box
+
+// Fetch a new random text at the same difficulty level
+    displayRandomTextByDifficulty();
 
     // Reset results (optional)
     document.getElementById("result-time").textContent = "-";
