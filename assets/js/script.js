@@ -17,11 +17,10 @@ const sampleTexts = {
     ]
 };
 
-let startTime; // Variable to store the start time
-
+let startTime = null; // Store the start time
+let testStarted = false; // Flag to check if typing has started
 
 // Function to display a random sample text based on the selected difficulty. When this function is called:
-
 // It checks which difficulty level the user selected.
 // It retrieves a list of texts for that difficulty.
 // It picks one text randomly.
@@ -38,7 +37,8 @@ function displayRandomTextByDifficulty() {
 
 // Function to start the typing test
 function startTypingTest() {
-    startTime = Date.now(); // Record the start time
+    testStarted = false; // Reset the flag
+    startTime = null; // Reset the timer
     document.getElementById("start-btn").disabled = true; // Disable the Start button
     document.getElementById("stop-btn").disabled = false; // Enable the Stop button
     
@@ -49,13 +49,24 @@ function startTypingTest() {
     
     displayRandomTextByDifficulty(); // Display a random text
     
-      const difficultySelect = document.getElementById("difficulty-select");
+    const difficultySelect = document.getElementById("difficulty-select");
     const selectedDifficulty = difficultySelect.value;
+    document.getElementById("result-time").textContent = "-";
+    document.getElementById("result-wpm").textContent = "-";
     document.getElementById("result-level").textContent = selectedDifficulty;
 }
 
+// Start timer on first key press in typing box
+document.getElementById("typing-box").addEventListener("keydown", function (e) {
+    if (!testStarted && e.key.length === 1) { // Only start on actual character input
+        startTime = Date.now();
+        testStarted = true;
+    }
+});
+
 // Function to stop the typing test and calculate the elapsed time
 function stopTypingTest() {
+    if (!testStarted || !startTime) return; // Do nothing if test hasn't started
     const endTime = Date.now(); // Record the end time
     const elapsedTime = ((endTime - startTime) / 1000).toFixed(2); // Calculate time in seconds and round to 2 decimal points
     document.getElementById("result-time").textContent = elapsedTime; // Display the elapsed time
@@ -65,6 +76,14 @@ function stopTypingTest() {
     document.getElementById("typing-box").disabled = true;
 // Disable the typing box
 }
+
+// Allow stopping the test with the Enter/Return key
+document.getElementById("typing-box").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        e.preventDefault(); // Prevents adding a new line in the textarea
+        stopTypingTest();
+    }
+});
 
 // Function to highlight words in real-time
 function highlightWords() {
