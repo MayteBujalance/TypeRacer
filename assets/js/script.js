@@ -62,6 +62,10 @@ document.getElementById("typing-box").addEventListener("keydown", function (e) {
     if (!testStarted && e.key.length === 1) { // Only start on actual character input
         startTime = Date.now();
         testStarted = true;
+        // Set the result level here as well
+        const difficultySelect = document.getElementById("difficulty-select");
+        const selectedDifficulty = difficultySelect.value;
+        document.getElementById("result-level").textContent = selectedDifficulty;
     }
 });
 
@@ -154,7 +158,9 @@ function retryTypingTest() {
     // Reset results (optional)
     document.getElementById("result-time").textContent = "-";
     document.getElementById("result-wpm").textContent = "-";
-    document.getElementById("result-level").textContent = "-";
+    const difficultySelect = document.getElementById("difficulty-select");
+    const selectedDifficulty = difficultySelect.value;
+    document.getElementById("result-level").textContent = selectedDifficulty;
 
     // Disable the Start button and enable the Stop button
     document.getElementById("start-btn").disabled = true;
